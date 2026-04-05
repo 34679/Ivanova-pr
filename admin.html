@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лапкин Дом - Админ-панель</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Навигация -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo" aria-label="Перейти на главную">
+            <i class="fas fa-paw"></i>
+            <span>Лапкин Дом</span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="admin.html" class="active">Админ</a>
+          </div>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="admin-main">
+      <div class="container">
+        <!-- Проверка авторизации -->
+        <div id="adminAuth" class="admin-auth" style="display: none">
+          <div class="login-card">
+            <i class="fas fa-lock"></i>
+            <h2>Вход в админ-панель</h2>
+            <p>Введите пароль администратора</p>
+            <input
+              type="password"
+              id="adminPassword"
+              placeholder="Пароль"
+              class="admin-input"
+            />
+            <button id="loginAdminBtn" class="btn-primary">Войти</button>
+            <div class="demo-info">
+              <small>Демо-пароль: <strong>admin123</strong></small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Админ-панель -->
+        <div id="adminPanel" style="display: none">
+          <div class="admin-panel-header">
+            <div class="admin-panel-copy">
+              <span class="admin-panel-badge">Панель управления</span>
+              <h1>Админка приюта</h1>
+              <p>
+                Управляйте животными, заявками, пользователями и опекой в одном месте.
+              </p>
+            </div>
+            <div class="admin-panel-actions">
+              <button id="logoutAdminBtn" class="btn-secondary logout-admin-btn">
+                Выйти из админки
+              </button>
+            </div>
+          </div>
+
+          <!-- Статистика -->
+          <div class="admin-stats">
+            <div class="stat-card">
+              <i class="fas fa-paw"></i>
+              <div class="stat-info">
+                <h3 id="totalAnimals">0</h3>
+                <p>Всего животных</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-users"></i>
+              <div class="stat-info">
+                <h3 id="totalUsers">0</h3>
+                <p>Пользователей</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-heart"></i>
+              <div class="stat-info">
+                <h3 id="totalAdopted">0</h3>
+                <p>Нашли дом</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-shopping-cart"></i>
+              <div class="stat-info">
+                <h3 id="totalSponsorships">0</h3>
+                <p>Активных опек</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вкладки -->
+          <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="animals">
+              <i class="fas fa-paw"></i> Животные
+            </button>
+            <button class="tab-btn" data-tab="applications">
+              <i class="fas fa-file-alt"></i> Заявки
+            </button>
+            <button class="tab-btn" data-tab="users">
+              <i class="fas fa-users"></i> Пользователи
+            </button>
+            <button class="tab-btn" data-tab="sponsorships">
+              <i class="fas fa-heart"></i> Опека
+            </button>
+            <button class="tab-btn" data-tab="settings">
+              <i class="fas fa-cog"></i> Настройки
+            </button>
+          </div>
+
+          <!-- Животные -->
+          <div class="tab-content active" id="animalsTab">
+            <div class="admin-actions">
+              <button class="btn-primary" id="addAnimalBtn">
+                <i class="fas fa-plus"></i> Добавить животное
+              </button>
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input
+                  type="text"
+                  id="searchAnimals"
+                  placeholder="Поиск по имени..."
+                />
+              </div>
+            </div>
+            <div class="animals-table-wrapper table-panel">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Фото</th>
+                    <th>Имя</th>
+                    <th>Тип</th>
+                    <th>Возраст</th>
+                    <th>Статус</th>
+                    <th>Цена</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="animalsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Заявки -->
+          <div class="tab-content" id="applicationsTab">
+            <div class="admin-actions">
+              <select id="applicationFilter" class="filter-select">
+                <option value="all">Все заявки</option>
+                <option value="pending">На рассмотрении</option>
+                <option value="approved">Одобрены</option>
+                <option value="rejected">Отклонены</option>
+              </select>
+            </div>
+            <div class="applications-table-wrapper table-panel">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Дата</th>
+                    <th>Заявитель</th>
+                    <th>Телефон</th>
+                    <th>Животное</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="applicationsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Пользователи -->
+          <div class="tab-content" id="usersTab">
+            <div class="users-list" id="usersList"></div>
+          </div>
+
+          <!-- Опека -->
+          <div class="tab-content" id="sponsorshipsTab">
+            <div class="sponsorships-list" id="sponsorshipsList"></div>
+          </div>
+
+          <!-- Настройки -->
+          <div class="tab-content" id="settingsTab">
+            <div class="settings-form">
+              <h3>Общие настройки сайта</h3>
+              <div class="form-group">
+                <label>Название приюта</label>
+                <input
+                  type="text"
+                  id="shelterName"
+                  class="form-control"
+                  value="Лапкин Дом"
+                />
+              </div>
+              <div class="form-group">
+                <label>Телефон</label>
+                <input
+                  type="text"
+                  id="shelterPhone"
+                  class="form-control"
+                  value="+7 (999) 123-45-67"
+                />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  id="shelterEmail"
+                  class="form-control"
+                  value="info@lapkindom.ru"
+                />
+              </div>
+              <div class="form-group">
+                <label>Адрес</label>
+                <input
+                  type="text"
+                  id="shelterAddress"
+                  class="form-control"
+                  value="ул. Добрая, 15"
+                />
+              </div>
+              <div class="form-group">
+                <label>Описание приюта</label>
+                <textarea id="shelterDescription" class="form-control" rows="4">
+Приют для животных с любовью и заботой о каждом хвостике</textarea
+                >
+              </div>
+              <button class="btn-primary" id="saveSettingsBtn">
+                Сохранить настройки
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Модальное окно для добавления/редактирования животного -->
+    <div id="animalModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="animalModalTitle">Добавить животное</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="animalForm">
+            <div class="form-group">
+              <label>Имя *</label>
+              <input
+                type="text"
+                id="animalName"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Тип</label>
+              <select id="animalType" class="form-control">
+                <option value="dog">Собака</option>
+                <option value="cat">Кошка</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Порода</label>
+              <input type="text" id="animalBreed" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label>Возраст</label>
+              <input
+                type="text"
+                id="animalAge"
+                class="form-control"
+                placeholder="например: 2 года"
+              />
+            </div>
+            <div class="form-group">
+              <label>Пол</label>
+              <select id="animalGender" class="form-control">
+                <option value="Мальчик">Мальчик</option>
+                <option value="Девочка">Девочка</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Статус</label>
+              <select id="animalStatus" class="form-control">
+                <option value="Ищет дом">Ищет дом</option>
+                <option value="Найден дом">Найден дом</option>
+                <option value="На лечении">На лечении</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Цена опеки (₽/мес)</label>
+              <input
+                type="number"
+                id="animalPrice"
+                class="form-control"
+                value="1000"
+              />
+            </div>
+            <div class="form-group">
+              <label>Краткое описание</label>
+              <textarea
+                id="animalMiniDesc"
+                class="form-control"
+                rows="2"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label>Полное описание</label>
+              <textarea
+                id="animalFullDesc"
+                class="form-control"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label>Фото (URL)</label>
+              <input
+                type="url"
+                id="animalPhoto"
+                class="form-control"
+                placeholder="https://..."
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary cancel-modal">Отмена</button>
+          <button class="btn-primary save-animal">Сохранить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модальное окно для просмотра заявки -->
+    <div id="applicationModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Детали заявки</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body" id="applicationDetails"></div>
+        <div class="modal-footer">
+          <button class="btn-secondary reject-app">Отклонить</button>
+          <button class="btn-primary approve-app">Одобрить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastMessage" class="toast"></div>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

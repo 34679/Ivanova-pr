@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Лапкин Дом - Приют для животных</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo" aria-label="Перейти на главную">
+            <i class="fas fa-paw"></i>
+            <span>Лапкин Дом</span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html" class="active">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="admin.html">Админ</a>
+            <button class="icon-btn" id="openProfileBtn">
+              Профиль
+            </button>
+            <button class="icon-btn cart-btn" id="cartIconBtn">
+              Корзина
+            </button>
+          </div>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero секция -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-badge">
+                <i class="fas fa-heart"></i> Более 100 счастливых хвостиков
+              </div>
+              <h1 class="hero-title">
+                Найди своего<br />
+                <span class="gradient-text">верного друга</span>
+              </h1>
+              <p class="hero-text">
+                Каждый год тысячи животных ищут дом. Подари любовь и заботу
+                тому, кто в этом нуждается.
+              </p>
+              <div class="hero-buttons">
+                <a href="catalog.html" class="btn-primary">
+                  <i class="fas fa-heart"></i> Выбрать питомца
+                </a>
+                <button class="btn-secondary" id="learnMoreBtn">
+                  <i class="fas fa-play"></i> Как помочь
+                </button>
+              </div>
+              <div class="hero-stats">
+                <div class="stat">
+                  <span class="stat-number" data-count="156">156</span>
+                  <span class="stat-label">Найдено домов</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number" data-count="48">48</span>
+                  <span class="stat-label">Сейчас в приюте</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number" data-count="1240">1.2k</span>
+                  <span class="stat-label">Помощников</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-image"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Преимущества -->
+      <section class="features">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Почему мы</span>
+            <h2 class="section-title">
+              Забота о каждом <span class="gradient-text">хвостике</span>
+            </h2>
+            <p class="section-subtitle">
+              Мы создали все условия для комфортной жизни наших подопечных
+            </p>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-stethoscope"></i>
+              </div>
+              <h3>Ветеринарный уход</h3>
+              <p>
+                Все животные проходят полный медицинский осмотр, вакцинацию и
+                стерилизацию
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <h3>Домашний уют</h3>
+              <p>
+                Просторные вольеры, ежедневные прогулки и много любви от наших
+                волонтёров
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <h3>Поддержка 24/7</h3>
+              <p>
+                Мы всегда на связи и помогаем советами после того, как вы
+                забрали друга домой
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Популярные питомцы -->
+      <section class="popular-pets">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Наши любимцы</span>
+            <h2 class="section-title">
+              Популярные <span class="gradient-text">питомцы</span>
+            </h2>
+            <p class="section-subtitle">
+              Они с нетерпением ждут встречи с вами
+            </p>
+          </div>
+          <div class="pets-grid" id="popularGrid"></div>
+          <div class="text-center">
+            <a href="catalog.html" class="btn-outline">Смотреть всех →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Как помочь -->
+      <section class="how-to-help">
+        <div class="container">
+          <div class="help-wrapper">
+            <div class="help-content">
+              <span class="section-tag">Как помочь</span>
+              <h2 class="section-title">
+                Способы <span class="gradient-text">поддержки</span>
+              </h2>
+              <p class="help-text">
+                Вы можете помочь приюту разными способами. Каждая помощь важна!
+              </p>
+              <div class="help-grid">
+                <div class="help-item">
+                  <div class="help-icon"><i class="fas fa-heart"></i></div>
+                  <div>
+                    <h4>Опека питомца</h4>
+                    <p>Ежемесячная поддержка выбранного животного</p>
+                  </div>
+                </div>
+                <div class="help-item">
+                  <div class="help-icon"><i class="fas fa-box"></i></div>
+                  <div>
+                    <h4>Передача корма</h4>
+                    <p>Сухой корм, консервы, лакомства</p>
+                  </div>
+                </div>
+                <div class="help-item">
+                  <div class="help-icon"><i class="fas fa-clock"></i></div>
+                  <div>
+                    <h4>Волонтёрство</h4>
+                    <p>Помощь в выгуле, уборке, социализации</p>
+                  </div>
+                </div>
+                <div class="help-item">
+                  <div class="help-icon"><i class="fas fa-money-bill"></i></div>
+                  <div>
+                    <h4>Пожертвование</h4>
+                    <p>Любая сумма на лечение и содержание</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Отзывы -->
+      <section class="testimonials">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Отзывы</span>
+            <h2 class="section-title">
+              Что говорят <span class="gradient-text">наши хозяева</span>
+            </h2>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-img">
+                <img
+                  src="https://randomuser.me/api/portraits/women/1.jpg"
+                  alt="Анна"
+                />
+              </div>
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  Спасибо приюту за нашу Марту! Она стала настоящим членом
+                  семьи.
+                </p>
+                <div class="testimonial-author">
+                  <h4>Анна С.</h4>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-img">
+                <img
+                  src="https://randomuser.me/api/portraits/men/2.jpg"
+                  alt="Дмитрий"
+                />
+              </div>
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  Взяли Барсика полгода назад. Очень ласковый кот, сразу привык
+                  к дому.
+                </p>
+                <div class="testimonial-author">
+                  <h4>Дмитрий К.</h4>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-img">
+                <img
+                  src="https://randomuser.me/api/portraits/women/3.jpg"
+                  alt="Елена"
+                />
+              </div>
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  Лучшее решение в моей жизни! Джесси — самый преданный друг.
+                </p>
+                <div class="testimonial-author">
+                  <h4>Елена М.</h4>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Призыв к действию -->
+      <section class="cta">
+        <div class="container">
+          <div class="cta-wrapper">
+            <div class="cta-content">
+              <h2>Готов подарить дом?</h2>
+              <p>
+                Присоединяйтесь к нашей большой семье. Каждый питомец ждёт
+                именно вас!
+              </p>
+              <a href="catalog.html" class="btn-primary">Найти друга</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-logo">
+              <i class="fas fa-paw"></i>
+              <span>Лапкин Дом</span>
+            </div>
+            <p>Приют для животных с любовью и заботой о каждом хвостике</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-vk"></i></a>
+              <a href="#"><i class="fab fa-telegram"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="admin.html">Админ панель</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Контакты</h4>
+            <ul>
+              <li><i class="fas fa-map-marker-alt"></i> ул. Добрая, 15</li>
+              <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+              <li><i class="fas fa-envelope"></i> info@lapkindom.ru</li>
+              <li><i class="fas fa-clock"></i> Ежедневно 10:00-20:00</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 Лапки Надежды. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Модальные окна -->
+    <div id="profileModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-user-circle"></i> Личный кабинет</h3>
+          <button class="close-modal" id="closeProfileModal">&times;</button>
+        </div>
+        <div class="auth-switch" id="authSwitch">
+          <button id="authModeLoginBtn" class="auth-tab active">Вход</button>
+          <button id="authModeRegisterBtn" class="auth-tab">Регистрация</button>
+        </div>
+
+        <div id="accountPanel" class="auth-panel account-panel">
+          <div class="account-card">
+            <div class="account-row">
+              <span class="account-label">Имя</span>
+              <strong id="accountNameValue"></strong>
+            </div>
+            <div class="account-row">
+              <span class="account-label">Email</span>
+              <strong id="accountEmailValue"></strong>
+            </div>
+            <div class="account-row">
+              <span class="account-label">Телефон</span>
+              <strong id="accountPhoneValue"></strong>
+            </div>
+            <div class="account-row">
+              <span class="account-label">Пожертвовано</span>
+              <strong id="accountDonationValue">0 ₽</strong>
+            </div>
+          </div>
+          <div class="logout-area">
+            <button id="logoutBtn" class="btn-secondary w-100">Выйти</button>
+          </div>
+        </div>
+
+        <div id="loginPanel" class="auth-panel active">
+          <div class="profile-field">
+            <label>Email</label>
+            <input type="email" id="loginEmail" placeholder="example@mail.ru" />
+          </div>
+          <div class="profile-field">
+            <label>Телефон</label>
+            <input type="tel" id="loginPhone" placeholder="+7 (___) ___-__-__" />
+          </div>
+          <button id="loginBtn" class="btn-primary w-100">Войти</button>
+          <div class="auth-note">Демо-вход: demo@lapkindom.ru / +7 (999) 123-45-67</div>
+        </div>
+
+        <div id="registerPanel" class="auth-panel">
+          <div class="profile-field">
+            <label>Ваше имя</label>
+            <input type="text" id="profileName" placeholder="Введите ваше имя" />
+          </div>
+          <div class="profile-field">
+            <label>Email</label>
+            <input type="email" id="profileEmail" placeholder="example@mail.ru" />
+          </div>
+          <div class="profile-field">
+            <label>Телефон</label>
+            <input
+              type="tel"
+              id="profilePhone"
+              placeholder="+7 (___) ___-__-__"
+            />
+          </div>
+          <button id="saveProfileBtn" class="btn-primary w-100">Зарегистрироваться</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-shopping-cart"></i> Моя корзина</h3>
+          <button class="close-modal" id="closeCartModal">&times;</button>
+        </div>
+        <div id="cartItemsList"></div>
+        <div id="cartTotal" class="cart-total"></div>
+        <button id="checkoutBtn" class="btn-primary w-100">
+          Оформить опеку
+        </button>
+      </div>
+    </div>
+
+    <div id="petModal" class="modal">
+      <div class="modal-content pet-modal-content">
+        <div class="modal-header">
+          <h3 id="petModalTitle">Карточка питомца</h3>
+          <button class="close-modal" id="closePetModal">&times;</button>
+        </div>
+        <div id="petModalBody"></div>
+        <div class="modal-footer pet-modal-footer">
+          <button id="closePetModalFooter" class="btn-secondary">Закрыть</button>
+          <button id="petModalActionBtn" class="btn-primary"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastMessage" class="toast"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+      function getPetTypeConfig(type) {
+        const typeMap = {
+          dog: { label: "Собака", icon: "fa-dog" },
+          cat: { label: "Кошка", icon: "fa-cat" },
+          other: { label: "Друг", icon: "fa-paw" },
+        };
+
+        return typeMap[type] || typeMap.other;
+      }
+
+      function getPetStatusConfig(status) {
+        if (status === "На лечении") {
+          return { icon: "fa-notes-medical", className: "status-care" };
+        }
+
+        if (status === "Найден дом") {
+          return { icon: "fa-house", className: "status-home" };
+        }
+
+        return { icon: "fa-heart", className: "status-search" };
+      }
+
+      function getPetPriceLabel(price) {
+        return price > 0 ? `${price} ₽/мес` : `Особая опека`;
+      }
+
+      function getPetTags(pet) {
+        const tags = [];
+
+        if (pet.breed && pet.breed !== "-") {
+          tags.push(pet.breed);
+        }
+
+        if (pet.status === "На лечении") {
+          tags.push("Нужен уход");
+        } else if (pet.status === "Ищет дом") {
+          tags.push("Готов к знакомству");
+        } else {
+          tags.push("Уже дома");
+        }
+
+        return tags;
+      }
+
+      // Загрузка популярных питомцев
+      function loadPopularPets() {
+        const grid = document.getElementById("popularGrid");
+        if (!grid || typeof petsData === "undefined") return;
+
+        const popular = petsData.slice(0, 3);
+        grid.innerHTML = popular
+          .map((pet) => {
+            const typeConfig = getPetTypeConfig(pet.type);
+            const statusConfig = getPetStatusConfig(pet.status);
+            const tags = getPetTags(pet)
+              .map((tag) => `<span class="pet-tag">${tag}</span>`)
+              .join("");
+
+            return `
+            <div class="pet-card" data-pet-id="${pet.id}" tabindex="0" role="button" aria-label="Открыть карточку питомца ${pet.name}">
+                <div class="pet-img">
+                    <img src="${
+                      pet.photoUrl || "https://via.placeholder.com/300x250"
+                    }" alt="${pet.name}">
+                    <div class="pet-card-top">
+                        <span class="pet-chip pet-chip-type"><i class="fas ${typeConfig.icon}"></i> ${typeConfig.label}</span>
+                        <div class="pet-badge ${statusConfig.className}"><i class="fas ${statusConfig.icon}"></i> ${pet.status}</div>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-headline">
+                        <div>
+                            <h3>${pet.name}</h3>
+                            <div class="pet-breed">${pet.breed && pet.breed !== "-" ? pet.breed : "Метис"}</div>
+                        </div>
+                        <div class="pet-price">${getPetPriceLabel(pet.price)}</div>
+                    </div>
+                    <p class="pet-desc">${pet.miniDesc.substring(0, 75)}...</p>
+                    <div class="pet-meta">
+                        <span><i class="fas fa-calendar"></i> ${pet.age}</span>
+                        <span><i class="fas ${
+                          pet.gender === "Мальчик" ? "fa-mars" : "fa-venus"
+                        }"></i> ${pet.gender}</span>
+                    </div>
+                    <div class="pet-tags">${tags}</div>
+                    <button class="btn-add" data-id="${pet.id}" data-name="${
+              pet.name
+            }" data-price="${pet.price}">
+                        <i class="fas fa-paw"></i> ${pet.status === "На лечении" || pet.price === 0 ? "Помочь" : "Поддержать"}
+                    </button>
+                </div>
+            </div>
+        `;
+          })
+          .join("");
+
+        document.querySelectorAll(".btn-add").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const id = parseInt(btn.dataset.id);
+            if (window.openPetModal) {
+              window.openPetModal(id);
+            }
+          });
+        });
+
+        document.querySelectorAll(".pet-card[data-pet-id]").forEach((card) => {
+          card.addEventListener("click", () => {
+            if (window.openPetModal) {
+              window.openPetModal(parseInt(card.dataset.petId, 10));
+            }
+          });
+
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              if (window.openPetModal) {
+                window.openPetModal(parseInt(card.dataset.petId, 10));
+              }
+            }
+          });
+        });
+      }
+
+      // Плавный скролл
+      document.getElementById("learnMoreBtn")?.addEventListener("click", () => {
+        document
+          .querySelector(".features")
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
+
+      // Загрузка
+      if (typeof petsData !== "undefined") {
+        loadPopularPets();
+      }
+      if (typeof loadStorage === "function") loadStorage();
+      if (typeof initModals === "function") initModals();
+    </script>
+  </body>
+</html>
